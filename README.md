@@ -6,7 +6,7 @@ http://spark.apache.org/downloads.html
 
 Install Java
 > sudo apt install openjdk-8-jre-headless
-# Requires Java 8, NOT Java 9
+*Requires Java 8, NOT Java 9*
 
 
 Download: http://spark.apache.org/downloads.html
@@ -21,37 +21,38 @@ Run (python):
 ### Load a text file
 > textFile = spark.read.text("README.md")
 > textFile
-# -> DataFrame[value: string]  ## A data frame w/ a single field "value" of type "string"
+-> DataFrame[value: string]  ## A data frame w/ a single field "value" of type "string"
 
 ### Show it
 > textFile.show()
 
 ### Count the number of records in the data frame
 > textFile.count()
-# -> 103
+-> 103
 
 ### The first record in the data frame
 > textFile.first()
-# -> Row(value=u'# Apache Spark')
+-> Row(value=u'# Apache Spark')
 
 ### The first 10 records in the data frame
 > textFile.take(10)
-# -> [Row(value=u'# Apache Spark'), Row(value=u''), Row(value=u'Spark is a fast and general cluster computing system for Big Data. It provides'), Row(value=u'high-level APIs in Scala, Java, Python, and R, and an optimized engine that'), Row(value=u'supports general computation graphs for data analysis. It also supports a'), Row(value=u'rich set of higher-level tools including Spark SQL for SQL and DataFrames,'), Row(value=u'MLlib for machine learning, GraphX for graph processing,'), Row(value=u'and Spark Streaming for stream processing.'), Row(value=u''), Row(value=u'<http://spark.apache.org/>')]
+-> [Row(value=u'# Apache Spark'), Row(value=u''), Row(value=u'Spark is a fast and general cluster computing system for Big Data. It provides'), Row(value=u'high-level APIs in Scala, Java, Python, and R, and an optimized engine that'), Row(value=u'supports general computation graphs for data analysis. It also supports a'), Row(value=u'rich set of higher-level tools including Spark SQL for SQL and DataFrames,'), Row(value=u'MLlib for machine learning, GraphX for graph processing,'), Row(value=u'and Spark Streaming for stream processing.'), Row(value=u''), Row(value=u'<http://spark.apache.org/>')]
 
 
 ## Transforming the data
 
 > from pyspark.sql.functions import *
-# some utility functions
+some utility functions
 
 > lines = textFile.select( split(textFile["value"], "\s+") )
-# "select(cols)" works like "SELECT" in SQL.  Can put any expression?   Not quite...
-# Many expressions work.
-# Column references: 
-#    lines["foo"]   # General use case
-#    lines.foo      # Shorthand for friendly column names
-#    col("foo")     # Shorthand, with no compile-time type-checking
-#    "foo"          # Works sometimes... but can't be manipulated
+"select(cols)" works like "SELECT" in SQL.  Can put any expression?   Not quite...
+
+Many expressions work.
+Column references: 
+* lines["foo"]   # General use case
+* lines.foo      # Shorthand for friendly column names
+* col("foo")     # Shorthand, with no compile-time type-checking
+* "foo"          # Works sometimes... but can't be manipulated
 
 
 > lines
