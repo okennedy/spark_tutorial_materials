@@ -190,6 +190,9 @@ whoooops...
 
 https://cloud.google.com/dataproc/
 
+```
+gcloud dataproc jobs submit pyspark [your script.py] --cluster=[cluster name]
+```
 
 
 
