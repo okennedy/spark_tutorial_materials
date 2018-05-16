@@ -29,7 +29,7 @@ Run (python):
 > textFile = spark.read.text("README.md")
 > textFile
 ```
--> DataFrame[value: string]  ## A data frame w/ a single field "value" of type "string"
+-> DataFrame[value: string]  *// A data frame w/ a single field "value" of type "string"*
 
 ### Show it
 ```
